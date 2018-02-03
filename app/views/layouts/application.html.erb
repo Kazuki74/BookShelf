@@ -3,11 +3,9 @@
  <head>
  <title>BookShelf</title>
  <%= csrf_meta_tags %>
-
  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
  </head>
-
  <body>
  <nav class="navbar navbar-inverse navbar-static-top">
  <div class="container-fluid">
@@ -25,7 +23,7 @@
  <div class="collapse navbar-collapse" id="navbar-collapse">
  <ul class="nav navbar-nav">
  <li><%= link_to '本棚', '/' %></a></li>
- <li><%= link_to 'レビュー', '/' %></li>
+ <li><%= link_to 'レビュー', reviews_path %></li>
  </ul>
  <ul class="nav navbar-nav navbar-right">
  <li class="dropdown">
