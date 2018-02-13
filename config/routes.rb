@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :reviews, except: [:index, :destroy]
   end
   devise_for :users
+  get 'my_books', to: 'books#my_books'
 end
 

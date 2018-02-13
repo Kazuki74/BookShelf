@@ -4,7 +4,12 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.page(params[:page])
+    @books = Book.page params[:page]
+    @books = @books.search(s_title: params[:s_title], s_category: params[:s_category]) if params[:s_title].present? || params[:s_category].present?
+  end
+
+  def my_books
+    @books = current_user.books.page params[:page]
   end
 
   # GET /books/1
@@ -67,13 +72,8 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
-    # # Never trust parameters from the scary internet, only allow the white list through.
-    # def book_params
-    #   params.require(:book).permit(:title, :author)
-    # end
-  def book_params
-    params.require(:book).permit(:title, :author, category_ids: [])
-  end
-
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def book_params
+      params.require(:book).permit(:title, :author, category_ids: [])
+    end
 end
-
