@@ -15,10 +15,13 @@ module SearchBook
 
     scope :search, lambda { |s|
       r = self
-      r = r.search_title(s[:title]) if s[:title].present?
-      r = r.joins(:categories).search_category(s[:category]) if s[:category].present?
-      return r if r != self
-      where({})
+      r = r.search_title(s[:s_title]) if s[:s_title].present?
+      r = r.joins(:s_categories).search_category(s[:s_category]) if s[:s_category].present?
+      if r != self
+        r
+      else
+        where({})
+      end
     }
   end
 end
